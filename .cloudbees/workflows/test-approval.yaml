@@ -9,6 +9,10 @@ on:
         default: Parameter default
         required: true
         description: Parameter description
+      input2:
+        type: boolean
+        default: true
+        required: true
 jobs:
   build:
     steps:
