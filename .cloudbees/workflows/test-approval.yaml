@@ -21,8 +21,6 @@ jobs:
         shell: sh
         run: |
           echo "hello world"
-    needs:
-      - prebuild
   prebuild:
     delegates: cloudbees-io/manual-approval/custom-job.yml@v1
     with:
