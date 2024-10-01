@@ -21,3 +21,17 @@ jobs:
         shell: sh
         run: |
           echo "hello world"
+    needs:
+      - prebuild
+  prebuild:
+    delegates: cloudbees-io/manual-approval/custom-job.yml@v1
+    with:
+      approvers:
+        - 3b95fb7e-e80d-11ea-a794-42010a83ae1a
+        - faa411b6-d746-11ec-8608-42010a83ae7a
+      disallowLaunchByUser: true
+      instruction: |-
+        Please approve me:
+        - Bullet 1
+        - Bullet 2
+        - ${{ cloudbees.run_id }}
