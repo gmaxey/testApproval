@@ -13,8 +13,6 @@ on:
         type: boolean
         default: true
         required: true
-      approvers:
-        type: string
 jobs:
   build:
     steps:
@@ -28,7 +26,7 @@ jobs:
   prebuild:
     delegates: cloudbees-io/manual-approval/custom-job.yml@v1
     with:
-      approvers: ${{ inputs.approvers }}
+      approvers: 9e6cef82-03d3-11eb-9d67-42010a83ae35,4b7f53fc-d4fe-11ec-bb55-42010a83ae55
       disallowLaunchByUser: false
       instruction: |-
         # Here are the instuctions
