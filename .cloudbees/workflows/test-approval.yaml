@@ -22,14 +22,10 @@ jobs:
         run: |
           echo "hello world"
     needs:
-      - prebuild
-  prebuild:
+      - Prebuild
+  Prebuild:
     delegates: cloudbees-io/manual-approval/custom-job.yml@v1
     with:
-      approvers: 9e6cef82-03d3-11eb-9d67-42010a83ae35
+      approvers: 9e6cef82-03d3-11eb-9d67-42010a83ae35,4b7f53fc-d4fe-11ec-bb55-42010a83ae55
       disallowLaunchByUser: false
-      instruction: |-
-        # Here are the instuctions
-        1. Do this first
-        1. This second
-        1. Then, Please approve me
+      instruction: Please approve me
