@@ -6,7 +6,7 @@ on:
     inputs:
       instructions:
         type: string
-        default: Parameter default
+        default: Approve me (parameter)!
 jobs:
   build:
     steps:
