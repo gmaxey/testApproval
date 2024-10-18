@@ -1,0 +1,21 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: prep
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    steps:
+      - name: Say hello
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        run: |
+          echo "hello world"
+    needs:
+      - prebuild
+  prebuild:
+    delegates: cloudbees-io/manual-approval/custom-job.yml@v1
+    with:
+      approvers: 9e6cef82-03d3-11eb-9d67-42010a83ae35,4b7f53fc-d4fe-11ec-bb55-42010a83ae55
+      disallowLaunchByUser: false
+      instruction: If this looks good, approve me - demo preparation
