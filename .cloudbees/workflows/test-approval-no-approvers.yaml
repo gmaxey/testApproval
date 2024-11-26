@@ -25,3 +25,4 @@ jobs:
       disallowLaunchByUser: false
       notifyAllEligibleUsers: true
       instructions: ${{ inputs.instructions }}
+      debug: true
