@@ -8,6 +8,13 @@ on:
         type: string
         default: Approve me (parameter)!
 jobs:
+  planning:
+    steps:
+      - uses: docker://golang:1.20.3-alpine3.17
+        name: Say hello
+        shell: sh
+        run: |
+          echo Planning
   build:
     steps:
       - uses: docker://golang:1.20.3-alpine3.17
@@ -15,9 +22,9 @@ jobs:
         shell: sh
         run: |
           echo "hello world"
-    needs:
-      - Prebuild
+    needs: [Prebuild,planning]
   Prebuild:
+    needs: planning
     timeout-minutes: 4320
     delegates: cloudbees-io/manual-approval/custom-job.yml@v1
     with:
