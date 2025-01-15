@@ -1,0 +1,13 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: approval-with-parameters
+on:
+  workflow_dispatch:
+jobs:
+  use-approval-parameters:
+    steps:
+      - uses: docker://golang:1.20.3-alpine3.17
+        name: Echo parameters
+        shell: sh
+        run: |
+          echo "hello world"
