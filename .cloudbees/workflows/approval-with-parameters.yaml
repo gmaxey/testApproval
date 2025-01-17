@@ -10,8 +10,8 @@ jobs:
         name: Echo parameters
         shell: sh
         run: |
-          echo "${{ fromJSON(outputs.approvalInputValues).In1 }}"
-          echo "${{ fromJSON(outputs.approvalInputValues).In2 }}"
+          echo "${{ fromJSON(needs.User-input.outputs.approvalInputValues).In1 }}"
+          echo "${{ fromJSON(needs.User-input.outputs.approvalInputValues).In2 }}"
     needs:
       - User-input
   User-input:
