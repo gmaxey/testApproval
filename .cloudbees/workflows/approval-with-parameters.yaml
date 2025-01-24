@@ -12,10 +12,9 @@ jobs:
         run: |
           echo "${{ fromJSON(needs.User-input.outputs.approvalInputValues).In1 }}"
           echo "${{ fromJSON(needs.User-input.outputs.approvalInputValues).In2 }}"
-          echo <<< "EOF"
+          echo "\
           Comments:
-          ${{needs.User-input.outputs.comments}}
-          EOF
+          ${{needs.User-input.outputs.comments}}"
     needs:
       - User-input
   User-input:
