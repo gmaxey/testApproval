@@ -30,4 +30,4 @@ jobs:
           type: number
           default: 121
     timeout-minutes: 4320
-    delegates: cloudbees-io/manual-approval/custom-job.yml
+    delegates: cloudbees-io/manual-approval/.cloudbees/testing/custom-job.yml
