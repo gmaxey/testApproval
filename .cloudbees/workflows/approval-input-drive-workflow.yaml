@@ -22,7 +22,9 @@ jobs:
     delegates: cloudbees-io/manual-approval/.cloudbees/testing/custom-job.yml
   run-tests:
     needs: User-input
-    if: "${{ fromJSON(needs.User-input.outputs.approvalInputValues).run-additional-tests}}"
+    #if: "${{ fromJSON(needs.User-input.outputs.approvalInputValues).run-additional-tests}}"
+    #if: fromJSON(needs.User-input.outputs.approvalInputValues).run-additional-tests
+    if: "false"
     steps:
       - uses: docker://golang:1.20.3-alpine3.17
         name: Tests
@@ -31,6 +33,10 @@ jobs:
   publish-test-results:
     needs: User-input
     steps:
+      - uses: docker://golang:1.20.3-alpine3.17
+        name: Echo conditional
+        shell: sh
+        run: echo "${{ fromJSON(needs.User-input.outputs.approvalInputValues).run-additional-tests}}"
       - uses: cloudbees-io/publish-evidence-item@v1
         name: Publish test results
         with:
