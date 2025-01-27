@@ -11,7 +11,7 @@ jobs:
       instructions: Please provide inputs
       approvalInputs: |
         run-additional-tests:
-          type: bool
+          type: boolean
           default: false
           description: Run automated tests only if needed
         manual-test-results:
