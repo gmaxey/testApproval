@@ -1,0 +1,45 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: SN-approval-action
+on:
+  workflow_dispatch:
+jobs:
+  create-approve-servicenow-job:
+    steps:
+      - id: create-1
+        name: Trigger Servicenow Create 1
+        uses: cloudbees-io/servicenow@v1
+        with:
+          url: ${{ vars.SN-URL }}
+          username: ${{ secrets.SN-user }}
+          password: ${{ secrets.SN-pass }}
+          action-type: create
+          short-description: Production request
+
+      - id: wait-for-approval
+        name: Trigger Servicenow Wait For Approval
+        uses: cloudbees-io/servicenow-poll-for-approval@v1
+        with:
+          url: ${{ vars.SN-URL }}
+          username: ${{ secrets.SN-user }}
+          password: ${{ secrets.SN-pass }}
+          cr-number: ${{ fromJSON(steps.create-1.outputs.servicenow-output).number }}
+          poll-interval: 1
+          poll-duration: 10
+          state-field-value: Review
+          approval-field-value-approved: Approved
+          approval-field-value-rejected: Rejected
+
+      - id: servicenow-update-closed
+        name: Trigger Servicenow Update Closed state
+        uses: cloudbees-io/servicenow@v1
+        with:
+          url: ${{ vars.SN-URL }}
+          username: ${{ secrets.SN-user }}
+          password: ${{ secrets.SN-pass }}
+          action-type: update
+          sys-id: ${{ fromJSON(steps.create-1.outputs.servicenow-output).sys_id }}
+          short-description: Production request
+          state: Closed
+          close-code: Successful
+          close-notes: Successfully completed
