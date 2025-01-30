@@ -10,9 +10,9 @@ jobs:
         name: Trigger Servicenow Create 1
         uses: cloudbees-io/servicenow@v1
         with:
-          url: ${{ vars.SN-URL }}
-          username: ${{ secrets.SN-user }}
-          password: ${{ secrets.SN-pass }}
+          url: ${{ vars.SN_URL }}
+          username: ${{ secrets.SN_user }}
+          password: ${{ secrets.SN_pass }}
           action-type: create
           short-description: Production request
 
@@ -20,9 +20,9 @@ jobs:
         name: Trigger Servicenow Wait For Approval
         uses: cloudbees-io/servicenow-poll-for-approval@v1
         with:
-          url: ${{ vars.SN-URL }}
-          username: ${{ secrets.SN-user }}
-          password: ${{ secrets.SN-pass }}
+          url: ${{ vars.SN_URL }}
+          username: ${{ secrets.SN_user }}
+          password: ${{ secrets.SN_pass }}
           cr-number: ${{ fromJSON(steps.create-1.outputs.servicenow-output).number }}
           poll-interval: 1
           poll-duration: 10
@@ -34,9 +34,9 @@ jobs:
         name: Trigger Servicenow Update Closed state
         uses: cloudbees-io/servicenow@v1
         with:
-          url: ${{ vars.SN-URL }}
-          username: ${{ secrets.SN-user }}
-          password: ${{ secrets.SN-pass }}
+          url: ${{ vars.SN_URL }}
+          username: ${{ secrets.SN_user }}
+          password: ${{ secrets.SN_pass }}
           action-type: update
           sys-id: ${{ fromJSON(steps.create-1.outputs.servicenow-output).sys_id }}
           short-description: Production request
