@@ -26,7 +26,6 @@ jobs:
           cr-number: ${{ fromJSON(steps.create-1.outputs.servicenow-output).number }}
           poll-interval: 1
           poll-duration: 10
-          state-field-value: Review
           approval-field-value-approved: Approved
           approval-field-value-rejected: Rejected
 
