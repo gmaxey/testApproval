@@ -35,4 +35,4 @@ jobs:
           echo 'retry-count: ${{ fromJSON(needs.build-approval.outputs.approvalInputValues).retry-count }}'
           echo 'boolean: ${{ fromJSON(needs.build-approval.outputs.approvalInputValues).boolean }}'
           echo 'Picklist: ${{ fromJSON(needs.build-approval.outputs.approvalInputValues).Picklist }}'
-          echo 'Approver comments: ${{needs.User-input.outputs.comments}}'
+          echo 'Approver comments: ${{needs.build-approval.outputs.comments}}'
