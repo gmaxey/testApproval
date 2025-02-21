@@ -31,7 +31,8 @@ jobs:
         name: Echo string input
         shell: sh
         run: |
-          echo '${{ fromJSON(needs.build-approval.outputs.approvalInputValues).string-value }}'
-          echo '${{ fromJSON(needs.build-approval.outputs.approvalInputValues).retry-count }}'
-          echo '${{ fromJSON(needs.build-approval.outputs.approvalInputValues).boolean }}'
-          echo '${{ fromJSON(needs.build-approval.outputs.approvalInputValues).Picklist }}'
+          echo 'string-value: ${{ fromJSON(needs.build-approval.outputs.approvalInputValues).string-value }}'
+          echo 'retry-count: ${{ fromJSON(needs.build-approval.outputs.approvalInputValues).retry-count }}'
+          echo 'boolean: ${{ fromJSON(needs.build-approval.outputs.approvalInputValues).boolean }}'
+          echo 'Picklist: ${{ fromJSON(needs.build-approval.outputs.approvalInputValues).Picklist }}'
+          echo 'Approver comments: ${{needs.User-input.outputs.comments}}'
