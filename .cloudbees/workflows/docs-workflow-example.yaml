@@ -6,7 +6,7 @@ on:
 jobs:
   build-approval:
     with:
-      approvers: de39a936-7a04-11ec-81d0-42010a83ae75
+      approvers: ""
       disallowLaunchByUser: false
       instructions: ""
       approvalInputs: |
