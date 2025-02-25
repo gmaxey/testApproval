@@ -41,11 +41,11 @@ jobs:
           name: Echo inputs
           shell: sh
           run: |
-            echo "${{ fromJSON(needs.User-input.outputs.approvalInputValues).string-value }}"
-            echo "${{ fromJSON(needs.User-input.outputs.approvalInputValues).retry-count }}"
-            echo "${{ fromJSON(needs.User-input.outputs.approvalInputValues).boolean }}"
-            echo "${{ fromJSON(needs.User-input.outputs.approvalInputValues).Picklist }}"
+            echo "${{ fromJSON(needs.build-approval.outputs.approvalInputValues).string-value }}"
+            echo "${{ fromJSON(needs.build-approval.outputs.approvalInputValues).retry-count }}"
+            echo "${{ fromJSON(needs.build-approval.outputs.approvalInputValues).boolean }}"
+            echo "${{ fromJSON(needs.build-approval.outputs.approvalInputValues).Picklist }}"
 
             echo "\
             Comments:
-            ${{needs.User-input.outputs.comments}}"
+            ${{needs.build-approval.outputs.comments}}"
