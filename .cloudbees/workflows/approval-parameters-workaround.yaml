@@ -5,11 +5,11 @@ on:
   workflow_dispatch:
 jobs:
   no-parameters:
-    timeout-minutes: 4320
-    delegates: gmaxey/manual-approval/custom-job.yml
     with:
-      approvers: ""
+      approvers: 3b95fb7e-e80d-11ea-a794-42010a83ae1a,f78b9fbe-4d63-11ee-8a57-42010a83ae02
       disallowLaunchByUser: false
       instructions: using my hacked version
       approvalInputs: |
         {}
+    timeout-minutes: 4320
+    delegates: gmaxey/manual-approval/custom-job.yml
