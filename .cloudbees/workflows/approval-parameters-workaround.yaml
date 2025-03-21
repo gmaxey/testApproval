@@ -1,0 +1,15 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: approval-parameters-workaround
+on:
+  workflow_dispatch:
+jobs:
+  no-parameters:
+    timeout-minutes: 4320
+    delegates: gmaxey/manual-approval/custom-job.yml
+    with:
+      approvers: ""
+      disallowLaunchByUser: false
+      instructions: using my hacked version
+      approvalInputs: |
+        {}
